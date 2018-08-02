@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-public class WechatLayoutManager implements ILayoutManager {
+public class WechatLayoutManager extends BaseLayoutManager {
     @Override
     public Bitmap combineBitmap(int size, int subSize, int gap, int gapColor, Bitmap[] bitmaps) {
         Bitmap result = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);

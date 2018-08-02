@@ -16,6 +16,7 @@ import com.othershe.combinebitmap.layout.ILayoutManager;
 import com.othershe.combinebitmap.layout.WechatLayoutManager;
 import com.othershe.combinebitmap.listener.OnProgressListener;
 import com.othershe.combinebitmap.listener.OnSubItemClickListener;
+import com.othershe.combinebitmap.region.BaseRegionManager;
 import com.othershe.combinebitmap.region.DingRegionManager;
 import com.othershe.combinebitmap.region.IRegionManager;
 import com.othershe.combinebitmap.region.WechatRegionManager;
@@ -151,8 +152,11 @@ public class Builder {
             } else if (count < 10) {
                 subSize = (size - 4 * gap) / 3;
             }
-        } else {
-            throw new IllegalArgumentException("Must use DingLayoutManager or WechatRegionManager!");
+        }
+        else {
+//            throw new IllegalArgumentException("Must use DingLayoutManager or WechatRegionManager!");
+//            for custom layoutManager
+            subSize=size;
         }
         return subSize;
     }
@@ -172,7 +176,8 @@ public class Builder {
         } else if (layoutManager instanceof WechatLayoutManager) {
             regionManager = new WechatRegionManager();
         } else {
-            throw new IllegalArgumentException("Must use DingLayoutManager or WechatRegionManager!");
+            regionManager=new BaseRegionManager();
+//            throw new IllegalArgumentException("Must use DingLayoutManager or WechatRegionManager!");
         }
 
         regions = regionManager.calculateRegion(size, subSize, gap, count);

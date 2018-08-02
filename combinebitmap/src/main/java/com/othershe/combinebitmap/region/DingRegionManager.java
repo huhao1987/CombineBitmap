@@ -3,7 +3,7 @@ package com.othershe.combinebitmap.region;
 import android.graphics.Path;
 import android.graphics.Region;
 
-public class DingRegionManager implements IRegionManager {
+public class DingRegionManager extends BaseRegionManager {
     @Override
     public Region[] calculateRegion(int size, int subSize, int gap, int count) {
         Region[] regions = new Region[count];
