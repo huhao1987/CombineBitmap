@@ -68,11 +68,11 @@ public class BitmapLoader {
     }
 
 
-    public void asyncLoad(final int index, final String url, final int reqWidth, final int reqHeight, final Handler handler, @Nullable final OkHttpClient okHttpClient) {
+    public void asyncLoad(final int index, final String url, final int reqWidth, final int reqHeight, final Handler handler, @Nullable final OkHttpClient okHttpClient,@Nullable final boolean Okhttpenqueue) {
         Runnable task = new Runnable() {
             @Override
             public void run() {
-                loadBitmap(url, reqWidth, reqHeight,okHttpClient, new OnBitmapLoaded(){
+                loadBitmap(url, reqWidth, reqHeight,okHttpClient,Okhttpenqueue, new OnBitmapLoaded(){
 
                     @Override
                     public void onComplete(Bitmap bitmap) {
@@ -96,7 +96,7 @@ public class BitmapLoader {
         ThreadPool.getInstance().execute(task);
     }
 
-    private void loadBitmap(final String url, int reqWidth, int reqHeight, @Nullable OkHttpClient okHttpClient, final OnBitmapLoaded onBitmapLoaded) {
+    private void loadBitmap(final String url, int reqWidth, int reqHeight, @Nullable OkHttpClient okHttpClient, @Nullable boolean Okhttpenqueue, final OnBitmapLoaded onBitmapLoaded) {
 
         // 尝试从内存缓存中读取
         String key = Utils.hashKeyFormUrl(url);
@@ -119,7 +119,7 @@ public class BitmapLoader {
             bitmap[0] = loadBitmapFromHttp(url, reqWidth, reqHeight);
 //            use Okhttp
             else
-                loadBitmapFromOkhttp(url, reqWidth, reqHeight,okHttpClient,true,new OnBitmapLoaded(){
+                loadBitmapFromOkhttp(url, reqWidth, reqHeight,okHttpClient,Okhttpenqueue,new OnBitmapLoaded(){
 
                 @Override
                 public void onComplete(Bitmap obitmap) {

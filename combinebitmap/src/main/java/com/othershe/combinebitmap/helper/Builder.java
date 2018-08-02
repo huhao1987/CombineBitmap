@@ -33,6 +33,7 @@ public class Builder {
     public int subSize; // 单个bitmap的尺寸
     public OkHttpClient okHttpClient;
     public Object tag;
+    public boolean okhttpenqueue;
     public ILayoutManager layoutManager; // bitmap的组合样式
 
     public Region[] regions;
@@ -107,8 +108,14 @@ public class Builder {
         return this;
     }
 
+    public Builder setOkhttpMethod(OkHttpClient okHttpClient,boolean enqueue){
+        this.okHttpClient=okHttpClient;
+        this.okhttpenqueue=enqueue;
+        return this;
+    }
     public Builder setOkhttpMethod(OkHttpClient okHttpClient){
         this.okHttpClient=okHttpClient;
+        this.okhttpenqueue=false;
         return this;
     }
 
